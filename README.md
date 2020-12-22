@@ -5,3 +5,4 @@ It uses three structure namely student , instructor , courses which store data o
 The program manages the student details (name and roll number) and maps them to their courses and professors taking the courses.
 It stores the data in student.txt, courses.txt and instructor.txt.
 The program automatically removes any repetition.
+This being my very first project is not commented properly.
