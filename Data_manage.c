@@ -2,66 +2,66 @@
 #include <stdlib.h>
 #include<string.h>
 
-#define MAX 50
+#define MAX 50   // MAX is initialized with 50
 
-enum branch {CSE, EE, ME};
+enum branch {CSE, EE, ME};  //branch is a enum which can take one of these 3 values . can be changed to have more values
 
 struct course 
 {
-    char code[MAX];
-    char name[MAX];
-    int credits;
-    int ninstructors;
-    char **instructor_ids;
-    int nstudents;
-    char **student_rollnos;
+    char code[MAX];   // Its a character array of length MAX used to store the course code
+    char name[MAX];   // Its a character array of length MAX used to store the course name
+    int credits;      // Stores the course credits
+    int ninstructors;  //Stores the total instructors teaching in that course
+    char **instructor_ids;  //2-d dynamically allocated array which stores the id's of the instructors teaching in that course
+    int nstudents; //Stores the number of students taking that course
+    char **student_rollnos; // 2-d dynamically allocated array storing roll number of students taking that course
 };
 
 struct student 
 {
-    char rollno[MAX];
-    char name[MAX];
-    enum branch branch;
-    int semester;
-    int ncourses;
-    char **courses_codes;
+    char rollno[MAX];  // Its a character array of length MAX used to store the roll number
+    char name[MAX];    //Another char array of length MAX which stores name of student
+    enum branch branch; //enum which take a value from {CSE, EE, ME}
+    int semester;  //Stores the semester number for each student
+    int ncourses; //Stores the total number of courses taken by a student
+    char **courses_codes;  //2-d dynamically initialized character vector storing codes for all courses taken
 };
 
 struct instructor 
 {
-    char id[MAX];
-    char name[MAX];
-    int ncourses;
-    char **courses_codes;
+    char id[MAX];  //Character array of length MAX which stores id of that instructor
+    char name[MAX]; //Character array of length MAX 50 which stores name of that instructor
+    int ncourses;   //Stores the number of courses taught by that instructor
+    char **courses_codes;  // 2-d dynamically allocated array storing course codes of courses taught by that instructor
 };
 
-void print_students();
-void print_student(struct student s);
-void add_student(struct student s);
-void add_new_student();
-struct student modify_student(struct student s);
+void print_students(); //Prints all student details
+void print_student(struct student s); //Prints the details of the input student
+void add_student(struct student s); //Adds the input student if it's not already there.
+void add_new_student(); //Adds a new student with predefined values
+struct student modify_student(struct student s);  //Modifies the details of a student
 
-void add_instructors(struct instructor ins);
-void print_instructor(struct instructor ins);
-void print_instructors();
-void add_new_instructor();
-struct instructor modify_instructor(struct instructor ins);
+void add_instructors(struct instructor ins);  //Adds a new instructor if its not already there
+void print_instructor(struct instructor ins); //Prints the details of that instructor
+void print_instructors(); //Prints details of all instructors
+void add_new_instructor(); //Adds a new instructor with predefined initail values
+struct instructor modify_instructor(struct instructor ins); //Modifies details of the input instructor
 
-void add_course(struct course c);
-void print_course(struct course c);
-void print_courses();
-void add_new_course();
-struct course modify_course(struct course c);
+void add_course(struct course c); //Adds a new course.
+void print_course(struct course c); //Prints the details of the input course.
+void print_courses();  //Prints details of all courses present.
+void add_new_course(); //Adds a new course with predefined values
+struct course modify_course(struct course c); //Modifies the details of input course
 
-void load_records();
-void load_students();
-void load_instructors();
-void load_courses();
+void load_records(); //Loads all data from txt files
+void load_students(); //Loads the student data from students.txt
+void load_instructors(); //Loads the instructor data from instructors.txt
+void load_courses(); //Loads the courses data from courses.txt
 
-void write_records();
-void write_students();
-void write_instructors();
-void write_courses();
+void write_records(); //Writes all data to txt files
+void write_students(); //Writes students data to students.txt file
+void write_instructors(); //Writes instructors data to instructors.txt file 
+void write_courses();  //Writes courses data to courses.txt file
 
 struct course *courses;
 struct student *students;
@@ -91,7 +91,7 @@ int main()
     printf("\nEnter your choice from above :");
     scanf("%d",&n);
     
-	switch(n)
+	switch(n)   //We use switch statements to have a decent graphical interface.
     { case 1:
 	 {printf("\n1)Display details of all students");
 	  printf("\n2)Display detail of student of roll no");
@@ -414,7 +414,7 @@ void add_new_instructor()
 	printf("Enter Instructor id:");
         scanf("%s",ins.id);
         for(int i=0;i<ninstructors;i++)
-        { if(strcmp(instructors[i].id,ins.id)==0)
+        { if(strcmp(instructors[i].id,ins.id)==0)  //Additional condition to see it it does not already exist
  	   {printf("FAIL! ID already Exists \n");
 	    return;
 	    }
@@ -479,7 +479,7 @@ void add_new_course()
 	printf("Enter course code");
 	scanf(" %s", c.code);
 	for(int i=0;i<ncourses;i++)
-	 { if(strcmp(courses[i].code,c.code)==0)
+	 { if(strcmp(courses[i].code,c.code)==0)  //Additional condition to see if the course already exists.
 	    {printf("FAIL!that course code exists");
 	     return;
 	     }
@@ -505,7 +505,7 @@ void add_new_course()
 		              check=2;
 		              }
 		            if(check!=2) 
-		            {instructors[k].ncourses +=1;
+		            {instructors[k].ncourses +=1;  //When new instructor is added we reallocate the block with more space as that of 1 instructor.
 		             instructors[k].courses_codes = realloc(instructors[k].courses_codes,
 					                                  instructors[k].ncourses * sizeof(char *));
 		             if((instructors[k].courses_codes)==NULL)
@@ -564,7 +564,7 @@ void add_new_course()
 	         }
 	      }
 	     } 
-	     if (check==0)
+	     if (check==0) //Add new students with default values ie. CSE branch, 1 course .
 		{ struct student s;
 		  strcpy(s.rollno,c.student_rollnos[i]);
 		  strcpy(s.name,"DEFAULT_s");
