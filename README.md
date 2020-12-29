@@ -6,16 +6,11 @@ of each of their object in the text files (students.txt, courses.txt, instructor
 
 Objects of structure student has the following attribules: 
 
-   rollno  // Its a character array of length 50 used to store the roll number
-   
-   name    //Another char array which stores name of student
-   
-   branch  //enum which take a value from {CSE, EE, ME}
-   
-   semester //Stores the semester number
-   
-   ncourses  //Stores the total courses taken by student
-   
+   rollno  // Its a character array of length 50 used to store the roll number  
+   name    //Another char array which stores name of student  
+   branch  //enum which take a value from {CSE, EE, ME}  
+   semester //Stores the semester number 
+   ncourses  //Stores the total courses taken by student 
    courses_codes //2-d dynamically initialized character vector storing codes for all courses taken
    
 Objects of structure course has the following attributes
